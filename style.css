@@ -1,0 +1,22 @@
+body {
+	background-color: white;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-gap: 2vw 2vh;
+}
+
+.grid-item {
+	border: 1px solid black;
+	text-align: center;
+}
+
+#form {
+	display: block;
+}
+
+#form input, #form button {
+	display: block;
+}

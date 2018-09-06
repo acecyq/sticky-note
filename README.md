@@ -5,7 +5,7 @@
 1. Fork this repo.
 2. Make a directory.
 3. cd into the director in your CLI.
-4. run 'git clone https://github.com/acecyq/sticky-note'.
+4. git clone the forked repo.
 5. run index.html in your browser and enjoy!
 
 ### How to use the app

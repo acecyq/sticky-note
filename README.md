@@ -1,5 +1,25 @@
 # Sticky Note Application - Front-End assignment
 
+### How to install the app
+
+1. Fork this repo.
+2. Make a directory.
+3. cd into the director in your CLI.
+4. run 'git clone https://github.com/acecyq/sticky-note'.
+5. run index.html in your browser and enjoy!
+
+### How to use the app
+
+- Write your task title and content in the white box provided.
+- Save your note to create and pin it to your board.
+- You may edit or delete the note.
+- Run a search for the note with the title that matches your search.
+
+
+
+
+### Actual Assignment Details
+
 This page contains description and requirements for a Front-End assignment on Vanilla **Javascript**, **HTML5**, **CSS3**.
 
 ### Duration

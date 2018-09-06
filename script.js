@@ -1,14 +1,3 @@
-// key in search input
-// loop through all title, 
-	// if title does not have value in search input, get index and div with index display none
-	// if title has valued in search input, get index
-	// 	if div with index classlist has deleted
-	// 		display none
-	// 	else
-	// 		display block
-// when search input is empty, display all notes that does not have deleted class
-// if empty display all
-
 // board of sticky notes
 var board = document.getElementsByClassName("grid-container")[0];
 

@@ -1,27 +1,96 @@
 body {
+	background-color: orange;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	color: white;
+	text-align: center;
+}
+
+button, input, textarea {
 	background-color: white;
+	border: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2rem;
+	color: orange;
+}
+
+textarea {
+	height: 20vh;
+}
+
+h3 {
+	margin: 1% 0 1% 0;
 }
 
 .grid-container {
 	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-gap: 2vw 2vh;
+	margin: 0 auto;
+	padding: 1%;
+	grid-template-columns: 33% 34% 33%;
 }
 
 .grid-item {
-	border: 1px solid black;
-	text-align: center;
+	border: 5px solid orange;
+	background-color: white;
+	color: black;
+}
+
+.grid-item button {
+	width: 10vw;
+	display: block;
+	background-color: black;
+	color: white;
+	margin: 1% auto;
 }
 
 .hidden {
 	display: none;
 }
 
-#form {
-	display: block;
-	border: 1px solid black;
+#searchBar {
+	width: 50vw;
 }
 
-#form input, #form button {
-	display: block;
+#board {
+	margin: 0 auto;
+}
+
+#form {
+	width: 60vw;
+	border: 5px solid white;
+	margin: 0 auto;
+	padding: 0 5% 2% 5%;
+}
+
+#form input, #form textarea {
+	width: 100%;
+	margin: 0 0 1% 0;
+}
+
+@media only screen and (max-width: 575.98px) {
+	body {
+		font-size: 1.0rem;
+	}
+
+	button, input, textarea {
+		font-size: 1.2rem;
+	}
+
+	.grid-container {
+		grid-template-columns: 50% 50%;
+	}
+
+	.grid-item button {
+		font-size: 0.6rem;
+	}
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) { 
+	.grid-container {
+		grid-template-columns: 50% 50%;
+	}
+
+	.grid-item button {
+		font-size: 1rem;
+	}
 }

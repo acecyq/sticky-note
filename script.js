@@ -1,8 +1,13 @@
-// add edit button and delete button to every note
-// edit button onclick displays title and content in form
-// form displays update button instead of save button
-// detects index of note editing
-// when click update changes note editing
+// key in search input
+// loop through all title, 
+	// if title does not have value in search input, get index and div with index display none
+	// if title has valued in search input, get index
+	// 	if div with index classlist has deleted
+	// 		display none
+	// 	else
+	// 		display block
+// when search input is empty, display all notes that does not have deleted class
+// if empty display all
 
 // board of sticky notes
 var board = document.getElementsByClassName("grid-container")[0];
@@ -21,7 +26,12 @@ var formUpdate = document.getElementById('formUpdate');
 var editBtn = document.getElementsByClassName('edit');
 var delBtn = document.getElementsByClassName('del');
 
+// get index of the note to update
 var target;
+
+// search input and search button
+var searchBar = document.getElementById('searchBar');
+var searchBtn = document.getElementById('searchBtn');
 
 
 
@@ -46,46 +56,6 @@ function switchForm() {
 	formUpdate.classList.toggle("hidden");
 }
 
-// when save button is clicked
-function addNote() {
-	// create a note
-	var note = document.createElement('div');
-	var count = document.getElementsByClassName("grid-item").length;
-	note.className = "grid-item";
-
-	// create note elements and add textContent
-	var title = document.createElement('h3');
-	var content = document.createElement('p');
-	var edit = document.createElement('button');
-	var del = document.createElement('button');
-	title.id = "title" + count;
-	title.textContent = newTitle.value;
-	content.id = "content" + count;
-	content.textContent = newContent.value;
-	edit.className = "edit";
-	edit.textContent = "Edit";
-	del.className = "del";
-	del.textContent = "Delete";
-
-	// when edit and del buttons are clicked
-	edit.addEventListener("click", function() {
-		editNote(count);
-	});
-	del.addEventListener("click", function() {
-		console.log("del");
-	});
-
-	// add elements to the note and add the note to the board
-	note.appendChild(title);
-	note.appendChild(content);
-	note.appendChild(edit);
-	note.appendChild(del);
-	board.appendChild(note);
-
-	resetInput();
-}
-
-
 // when edit button on note is clicked
 function editNote(i) {
 
@@ -104,22 +74,107 @@ function editNote(i) {
 	target = i;
 }
 
+// when delete button is clicked
+function delNote(i) {
+	
+	// find div to delete and set display none and add deleted class
+	var delDiv = document.getElementById("note" + i);
+	delDiv.classList.add("hidden");
+	delDiv.classList.add("deleted");
+}
+
+// when save button is clicked
+function addNote() {
+	// create a note
+	var note = document.createElement('div');
+	var count = document.getElementsByClassName("grid-item").length;
+	note.className = "grid-item"
+	note.id = "note" + count;
+
+	// create note elements and add textContent
+	var title = document.createElement('h3');
+	var content = document.createElement('p');
+	var edit = document.createElement('button');
+	var del = document.createElement('button');
+	title.id = "title" + count;
+	title.className = "titles"
+	title.textContent = newTitle.value;
+	content.id = "content" + count;
+	content.textContent = newContent.value;
+	edit.className = "edit";
+	edit.textContent = "Edit";
+	del.className = "del";
+	del.textContent = "Delete";
+
+	// when edit and del buttons are clicked
+	edit.addEventListener("click", function() {
+		editNote(count);
+	});
+	del.addEventListener("click", function() {
+		delNote(count);
+	});
+
+	// add elements to the note and add the note to the board
+	note.appendChild(title);
+	note.appendChild(content);
+	note.appendChild(edit);
+	note.appendChild(del);
+	board.appendChild(note);
+
+	// reset form inputs
+	resetInput();
+}
+
 function updateNote() {
-	var titleClass = "title" + target;
-	var contentClass = "content" + target;
-	var titleChange = document.getElementById(titleClass);
-	var contentChange = document.getElementById(contentClass);
+
+	// get title and content to edit and change their textContent to form input values
+	var titleChange = document.getElementById("title" + target);
+	var contentChange = document.getElementById("content" + target);
 	titleChange.textContent = newTitle.value;
 	contentChange.textContent = newContent.value;
-	newTitle.value = "";
-	newContent.value = "";
+
+	// reset form inputs
+	resetInput();
 
 	// change form to new form
 	switchForm();
+}
+
+// when search button is clicked
+function searchNotes() {
+
+	// all titles and search input value
+	var titles = document.getElementsByClassName('titles');
+	var searchInput = searchBar.value;
+
+	// declare title id value and get the note of that id value
+	var j, checkNote;
+
+	// loop through all the titles
+	for (var i = 0; i < titles.length; i++) {
+		j = parseInt(titles[i].id.charAt(5));
+		checkNote = document.getElementById('note' + j);
+
+		// if title textContent has search input value
+		if (titles[i].textContent.includes(searchInput)) {
+
+			// check if note is not deleted but hidden, display it
+			if (!checkNote.classList.value.includes("deleted") && checkNote.classList.value.includes("hidden")) {
+				checkNote.classList.toggle("hidden");
+			}
+		} else {
+
+			// if note does not have search input value and is not hidden, then hide it
+			if (!checkNote.classList.value.includes("hidden")) {
+				checkNote.classList.toggle("hidden");
+			}
+		}
+	}
 }
 
 
 
 newSave.addEventListener("click", addNote);
 update.addEventListener("click", updateNote);
+searchBtn.addEventListener("click", searchNotes);
 

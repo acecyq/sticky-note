@@ -13,8 +13,13 @@ body {
 	text-align: center;
 }
 
+.hidden {
+	display: none;
+}
+
 #form {
 	display: block;
+	border: 1px solid black;
 }
 
 #form input, #form button {

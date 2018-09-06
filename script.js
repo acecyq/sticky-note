@@ -7,18 +7,21 @@
 // board of sticky notes
 var board = document.getElementsByClassName("grid-container")[0];
 
-// new note button
-var newNote = document.getElementById('newNote');
-
 // form div and elements
 var form = document.getElementById('form');
 var formTitle = document.getElementById('formTitle');
 var newTitle = document.getElementById('newTitle');
 var newContent = document.getElementById('newContent');
 var newSave = document.getElementById('newSave');
+var update = document.getElementById('update');
+var formSave = document.getElementById('formSave');
+var formUpdate = document.getElementById('formUpdate');
 
+// edit and del buttons on the note
 var editBtn = document.getElementsByClassName('edit');
-var editBtn = document.getElementsByClassName('del');
+var delBtn = document.getElementsByClassName('del');
+
+var target;
 
 
 
@@ -28,22 +31,20 @@ function resetInput() {
 	newContent.value = "";
 }
 
-// when new form button is clicked
-function showForm() {
+// when edit button is clicked
+function switchForm() {
 
-	// shows the form
-	form.style.display = "block";
-	resetInput();
+	// change form title to edit note
+	if (formTitle.textContent === "New Note") {
+		formTitle.textContent = "Edit Note";
+	} else {
+		formTitle.textContent = "New Note";
+	}
+
+	// change save button to edit button or vice versa
+	formSave.classList.toggle("hidden");
+	formUpdate.classList.toggle("hidden");
 }
-
-function editNote(i) {
-	var titleI = document.getElementById("title" + i);
-	var contentI = document.getElementById("content" + i);
-	newTitle.value = titleI.textContent;
-	newContent.value = contentI.textContent;
-}
-
-
 
 // when save button is clicked
 function addNote() {
@@ -85,8 +86,40 @@ function addNote() {
 }
 
 
+// when edit button on note is clicked
+function editNote(i) {
 
-newNote.addEventListener("click", showForm);
+	// elements on clicked note
+	var titleI = document.getElementById("title" + i);
+	var contentI = document.getElementById("content" + i);
+
+	// change form elements value to clicked note elements textcontent
+	newTitle.value = titleI.textContent;
+	newContent.value = contentI.textContent;
+
+	// change form to edit form
+	switchForm();
+
+	// assign target to the be index of the note
+	target = i;
+}
+
+function updateNote() {
+	var titleClass = "title" + target;
+	var contentClass = "content" + target;
+	var titleChange = document.getElementById(titleClass);
+	var contentChange = document.getElementById(contentClass);
+	titleChange.textContent = newTitle.value;
+	contentChange.textContent = newContent.value;
+	newTitle.value = "";
+	newContent.value = "";
+
+	// change form to new form
+	switchForm();
+}
+
+
+
 newSave.addEventListener("click", addNote);
-
+update.addEventListener("click", updateNote);
 

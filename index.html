@@ -16,9 +16,6 @@
 		<button>Search</button>
 	</section>
 	<section>
-		<button id="newNote">New Note</button>
-	</section>
-	<section>
 		<div class="grid-container">
 		</div>
 	</section>
@@ -27,7 +24,12 @@
 			<h3 id="formTitle">New Note</h3>
 			<input id="newTitle" type="text" placeholder="Title"></input>
 			<textarea id="newContent" type="text" placeholder="Content"></textarea>
-			<button id="newSave">Save</button>
+			<div id="formSave">
+				<button id="newSave">Save</button>
+			</div>
+			<div id="formUpdate" class="hidden">
+				<button id="update" class="hidden">Update</button>
+			</div>
 		</div>
 	</section>
 	<footer>
